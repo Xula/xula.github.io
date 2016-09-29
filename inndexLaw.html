@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" rel="stylesheet" />
+	<style type="text/css">
+		#leafletmap{height: 600px;}
+	</style>
+ 
+	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+	<script type="text/javascript">
+		onload = init;
+
+		function init(){
+			var mymap = L.map('leafletmap', {
+				center: [[40.775,-73.972]],
+				scrollWheelZoom: true,
+				inertia: true,
+				inertiaDeceleration: 2000,
+			})
+
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			maxZoom: 18}).addTo(mymap);
+
+			//mymap.setView([40.775,-73.972], 15);
+			mymap.locate({setView: true, maxZoom: 15});
+			
+			mymap.on('locationfound', onLocationFound);
+
+			function onLocationFound(e) {
+				console.log(e.latitude);
+			    L.marker(e.latlng).addTo(mymap);
+			    calledByWatch(e);
+			}
+			
+			mymap.locate({watch: true});
+			
+			function calledByWatch(e){
+				var p = document.getElementById("teste");
+				p.innerHTML = "Latitude e Longitude: "+ e.latitude + ", " + e.longitude;
+			}
+
+			
+
+		}
+
+	</script>
+</head>
+<body>
+	<div id="leafletmap"></div>
+	<p id="teste"></p>
+</body>
+</html>
