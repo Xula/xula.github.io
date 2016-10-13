@@ -12,6 +12,8 @@
 	<script type="text/javascript">
 		onload = init;
 
+		var tracos = [];
+		
 		function init(){
 			var mymap = L.map('leafletmap', {
 				center: [[40.775,-73.972]],
@@ -33,6 +35,7 @@
 				console.log(e.latitude);
 			    L.marker(e.latlng).addTo(mymap);
 			    calledByWatch(e);
+				
 			}
 			
 			mymap.locate({watch: true});
@@ -40,6 +43,9 @@
 			function calledByWatch(e){
 				var p = document.getElementById("teste");
 				p.innerHTML = "Latitude e Longitude: "+ e.latitude + ", " + e.longitude;
+				
+				tracos.push(e.latlng);
+				var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
 			}
 
 			
