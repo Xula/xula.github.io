@@ -33,7 +33,9 @@
 
 			function onLocationFound(e) {
 				console.log(e.latitude);
-			    L.marker(e.latlng).addTo(mymap);
+			    //L.marker(e.latlng).addTo(mymap);
+				tracos.push(e.latlng);
+				var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
 			    calledByWatch(e);
 				
 			}
@@ -43,9 +45,6 @@
 			function calledByWatch(e){
 				var p = document.getElementById("teste");
 				p.innerHTML = "Latitude e Longitude: "+ e.latitude + ", " + e.longitude;
-				
-				tracos.push(e.latlng);
-				var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
 			}
 
 			
