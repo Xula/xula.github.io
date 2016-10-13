@@ -35,7 +35,7 @@
 				console.log(e.latitude);
 			    //L.marker(e.latlng).addTo(mymap);
 				tracos.push(e.latlng);
-				L.polyline(tracos, {color: 'blue'}).addTo(mymap);
+				L.polyline(tracos, {color: 'blue', weight: 3}).addTo(mymap);
 			    calledByWatch(e);
 				
 			}
