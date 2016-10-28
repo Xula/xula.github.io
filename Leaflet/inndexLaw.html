@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-	<link href="leaflet.css" rel="stylesheet" />
+	 <link rel="stylesheet" href="leaflet.css" />
+	<script type="text/javascript" src="leaflet1.js"></script>
 	<style type="text/css">
 		#leafletmap{height: 600px;}
 	</style>
  
-	<script type="text/javascript" src="leaflet.js"></script>
 	<script type="text/javascript">
 		onload = init;
 
@@ -22,7 +22,7 @@
 				inertiaDeceleration: 2000,
 			})
 
-			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 			maxZoom: 18}).addTo(mymap);
 
@@ -37,7 +37,7 @@
 				tracos.push(e.latlng);
 				L.polyline(tracos, {color: 'blue', weight: 10}).addTo(mymap);
 			    calledByWatch(e);
-				
+			    
 			}
 			
 			mymap.locate({watch: true});
@@ -45,16 +45,15 @@
 			function calledByWatch(e){
 				var p = document.getElementById("teste");
 				p.innerHTML = "Latitude e Longitude: "+ e.latitude + ", " + e.longitude + " , Array se expandindo >>> " + tracos;
+				
 			}
-
-			
-
 		}
 
 	</script>
 </head>
 <body>
 	<div id="leafletmap"></div>
-	<p id="teste"></p>
+	<p id="teste"></p><br>
+	<p id="json">Coordenadas aqui:  </p>
 </body>
 </html>
